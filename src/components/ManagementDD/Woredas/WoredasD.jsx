@@ -15,7 +15,7 @@ const Woredas = () => {
   useEffect(() => {
     const fetchWoredas = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/addworeda`);
+        const response = await axios.get(`${apiUrl}api/addworeda`);
         setWoredas(response.data);
       } catch (error) {
         console.error("Error fetching woredas:", error);

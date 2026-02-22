@@ -22,7 +22,7 @@ function Welcompage() {
     try {
       // Call the API to change the password
       const response = await axios.patch(
-        `${apiUrl}/api/users/change-password/${userId}`,
+        `${apiUrl}api/users/change-password/${userId}`,
         {
           currentPassword,
           newPassword,

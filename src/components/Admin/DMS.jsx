@@ -60,6 +60,8 @@ import {
   FiBook,
 } from "react-icons/fi";
 import axios from "axios";
+import moment from "moment";
+import {getApiUrl} from "../../utils/getApiUrl";
 
 const { Header, Sider, Content } = Layout;
 const { Search } = Input;
@@ -67,8 +69,8 @@ const { Option } = Select;
 const { TabPane } = Tabs;
 
 // Use your actual backend port (5001 from your Express app)
-const BASE = "https://yekawebapi.yekasubcity.com/api/dms";
-const UPLOADS_BASE = "https://yekawebapi.yekasubcity.com/uploads"; // Base URL for file access
+const BASE = getApiUrl() + "api/dms";
+const UPLOADS_BASE = getApiUrl() + "uploads"; // Base URL for file access
 
 const DMS = () => {
   const {
@@ -98,7 +100,7 @@ const DMS = () => {
   // Fetch all data
   const fetchFolders = async () => {
     try {
-      const res = await axios.get(`${BASE}/folders`);
+      const res = await axios.get(`${BASE}folders`);
       setFolders(res.data.data);
     } catch (error) {
       console.error("Fetch folders error:", error);
@@ -108,7 +110,7 @@ const DMS = () => {
 
   const fetchFiles = async (folderId) => {
     try {
-      const res = await axios.get(`${BASE}/folders/${folderId}`);
+      const res = await axios.get(`${BASE}folders/${folderId}`);
       console.log("Files response:", res.data); // Debug log
       // Handle both response formats
       if (res.data.data && res.data.data.files) {
@@ -126,7 +128,7 @@ const DMS = () => {
 
   const fetchFavorites = async () => {
     try {
-      const res = await axios.get(`${BASE}/favorites`);
+      const res = await axios.get(`${BASE}favorites`);
       setFavorites(res.data.data || []);
     } catch (error) {
       console.error("Fetch favorites error:", error);
@@ -135,7 +137,7 @@ const DMS = () => {
 
   const fetchActivities = async () => {
     try {
-      const res = await axios.get(`${BASE}/activities`);
+      const res = await axios.get(`${BASE}activities`);
       setActivities(res.data.data || []);
     } catch (error) {
       console.error("Fetch activities error:", error);
@@ -161,7 +163,7 @@ const DMS = () => {
 
     setActionLoading(true);
     try {
-      await axios.post(`${BASE}/folders`, {
+      await axios.post(`${BASE}folders`, {
         name: folderName,
         parent_id: selectedFolder?.id || null,
       });
@@ -181,7 +183,7 @@ const DMS = () => {
     if (!folderName.trim()) return message.error("Folder name required");
 
     try {
-      await axios.put(`${BASE}/folders/${editingFolder.id}`, {
+      await axios.put(`${BASE}folders/${editingFolder.id}`, {
         name: folderName,
       });
       message.success("Folder renamed successfully! ✏️");
@@ -196,7 +198,7 @@ const DMS = () => {
 
   const deleteFolder = async (folder) => {
     try {
-      await axios.delete(`${BASE}/folders/${folder.id}`);
+      await axios.delete(`${BASE}folders/${folder.id}`);
       message.success("Folder deleted successfully! 🗑️");
       fetchFolders();
       if (selectedFolder?.id === folder.id) {
@@ -235,7 +237,7 @@ const DMS = () => {
         formData.append("file", file);
         formData.append("folder_id", selectedFolder.id);
 
-        const response = await axios.post(`${BASE}/files/upload`, formData, {
+        const response = await axios.post(`${BASE}files/upload`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -265,7 +267,7 @@ const DMS = () => {
 
   const deleteFile = async (id) => {
     try {
-      await axios.delete(`${BASE}/files/${id}`);
+      await axios.delete(`${BASE}files/${id}`);
       message.success("File deleted successfully! 🗑️");
       fetchFiles(selectedFolder.id);
       fetchActivities();
@@ -283,7 +285,7 @@ const DMS = () => {
 
       // Optionally call the API endpoint to track download count
       try {
-        await axios.get(`${BASE}/files/${file.id}/download`);
+        await axios.get(`${BASE}files/${file.id}/download`);
       } catch (trackError) {
         console.error("Download tracking error:", trackError);
       }
@@ -328,12 +330,12 @@ const DMS = () => {
       );
 
       if (isFavorited) {
-        await axios.delete(`${BASE}/favorites`, {
+        await axios.delete(`${BASE}favorites`, {
           data: { resource_type, resource_id },
         });
         message.success("Removed from favorites");
       } else {
-        await axios.post(`${BASE}/favorites`, {
+        await axios.post(`${BASE}favorites`, {
           resource_type,
           resource_id,
         });

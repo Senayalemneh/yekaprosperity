@@ -32,7 +32,7 @@ export default function OrgStructureAdmin() {
   const fetchTree = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("/api/org-structure");
+      const res = await axios.get("api/org-structure");
       setTreeData(formatTreeForAntd(res.data.data));
       setFlatData(flatten(res.data.data));
     } catch (err) {
@@ -71,7 +71,7 @@ export default function OrgStructureAdmin() {
     const id = keys[0];
 
     try {
-      const res = await axios.get(`/api/org-structure/${id}`);
+      const res = await axios.get(`api/org-structure/${id}`);
       setSelectedNode(res.data.data);
       form.setFieldsValue(res.data.data);
       setImagePreview(res.data.data.image || null);
@@ -85,7 +85,7 @@ export default function OrgStructureAdmin() {
     try {
       const values = await form.validateFields();
 
-      await axios.put(`/api/org-structure/${selectedNode.id}`, values);
+      await axios.put(`api/org-structure/${selectedNode.id}`, values);
 
       message.success("Updated successfully");
       fetchTree();
@@ -106,7 +106,7 @@ export default function OrgStructureAdmin() {
         image: null,
       };
 
-      await axios.post("/api/org-structure", newNode);
+      await axios.post("api/org-structure", newNode);
 
       message.success("Child added");
       fetchTree();
@@ -118,7 +118,7 @@ export default function OrgStructureAdmin() {
   // Delete node
   const deleteNode = async () => {
     try {
-      await axios.delete(`/api/org-structure/${selectedNode.id}`);
+      await axios.delete(`api/org-structure/${selectedNode.id}`);
       message.success("Deleted");
       setSelectedNode(null);
       form.resetFields();

@@ -30,7 +30,7 @@ const OfficeDetail = () => {
 
     const fetchOffice = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/addoffice/${id}`);
+        const response = await fetch(`${apiUrl}api/addoffice/${id}`);
         if (response.ok) {
           const data = await response.json();
           setOffice(data);
@@ -120,7 +120,7 @@ const OfficeDetail = () => {
             <div className="flex items-center justify-center mb-6">
               <img
                 alt={name}
-                src={`${apiUrl}/uploads/Offices/${logo}`}
+                src={`${apiUrl}uploads/Offices/${logo}`}
                 className="w-72 h-72  object-fill" // Increased logo size
               />
             </div>

@@ -469,7 +469,7 @@ const DirectorMessage = () => {
                   {t("Executive Team")}
                 </FloatingBadge>
 
-                <FloatingQuote
+                {/* <FloatingQuote
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isHovered ? 0.8 : 0 }}
                   transition={{ duration: 0.5 }}
@@ -478,7 +478,7 @@ const DirectorMessage = () => {
                   {getLocalizedText("quote") ||
                     t("Leading with vision and purpose")}
                   "
-                </FloatingQuote>
+                </FloatingQuote> */}
 
                 {/* Name and Position */}
                 <div className="relative z-10 p-8 w-full">

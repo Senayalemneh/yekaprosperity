@@ -35,7 +35,7 @@ const DataTable = () => {
         const token = localStorage.getItem("token"); // Get token from localStorage
         const headers = { Authorization: `Bearer ${token}` }; // Add Authorization header
     
-        const response = await axios.get(`${apiUrl}/api/data`, { headers });
+        const response = await axios.get(`${apiUrl}api/data`, { headers });
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -52,7 +52,7 @@ const DataTable = () => {
         Authorization: `Bearer ${token}`,
       };
   
-      const response = await axios.post(`${apiUrl}/api/data`, values, { headers });
+      const response = await axios.post(`${apiUrl}api/data`, values, { headers });
       setData([...data, response.data]);
       form.resetFields();
       setIsModalVisible(false);
@@ -69,7 +69,7 @@ const DataTable = () => {
         Authorization: `Bearer ${token}`,
       };
   
-      const response = await axios.put(`${apiUrl}/api/data/${currentData._id}`, values, { headers });
+      const response = await axios.put(`${apiUrl}api/data/${currentData._id}`, values, { headers });
       setData(data.map(item => (item._id === currentData._id ? response.data : item)));
       form.resetFields();
       setIsModalVisible(false);
@@ -84,7 +84,7 @@ const DataTable = () => {
       const token = localStorage.getItem("token");
       const headers = { Authorization: `Bearer ${token}` };
   
-      await axios.delete(`${apiUrl}/api/data/${id}`, { headers });
+      await axios.delete(`${apiUrl}api/data/${id}`, { headers });
       setData(data.filter(item => item._id !== id));
     } catch (error) {
       console.error('Error deleting data:', error);

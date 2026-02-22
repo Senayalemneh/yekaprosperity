@@ -52,6 +52,7 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import axios from "axios";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import {getApiUrl} from "../../utils/getApiUrl";
 
 const { useBreakpoint } = Grid;
 const { TabPane } = Tabs;
@@ -59,7 +60,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
-const BACKEND_URL = "https://yekawebapi.yekasubcity.com/";
+const BACKEND_URL = getApiUrl();
 
 const languages = [
   { code: "en", name: "English", flag: "🇬🇧" },

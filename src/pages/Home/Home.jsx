@@ -21,7 +21,7 @@ function Home() {
   return (
     <div>
       <Carousel />
-      <Welcome2 />
+      {/* <Welcome2 /> */}
       <DirectorMessage />
       <OurTeam />
       {/* <BuildingFloors /> */}

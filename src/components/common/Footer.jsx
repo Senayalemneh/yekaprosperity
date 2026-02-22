@@ -21,9 +21,9 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { Spin } from "antd";
+import { getApiUrl } from "../../utils/getApiUrl";
 
-const BACKEND_URL =
-  process.env.REACT_APP_BACKEND_URL || "https://yekawebapi.yekasubcity.com";
+const BACKEND_URL = getApiUrl();
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -46,7 +46,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchOfficeData = async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/officedata`);
+        const res = await axios.get(`${BACKEND_URL}api/officedata`);
         if (res.data.data && res.data.data.length > 0) {
           setOfficeData(res.data.data[0]); // Take the first office data
         }
@@ -204,7 +204,7 @@ const Footer = () => {
             >
               {officeData?.officelogo ? (
                 <img
-                  src={`${BACKEND_URL}/uploads/${officeData.officelogo}`}
+                  src={`${BACKEND_URL}uploads/${officeData.officelogo}`}
                   alt={officeData.officename?.en || "Office Logo"}
                   className="w-16 h-16 object-contain rounded-lg border-2 border-white shadow-lg"
                 />

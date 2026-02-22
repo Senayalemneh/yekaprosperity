@@ -19,7 +19,7 @@ const OfficesList = () => {
   useEffect(() => {
     const fetchOffices = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/addoffice`);
+        const response = await fetch(`${apiUrl}api/addoffice`);
         const data = await response.json();
 
         console.log("Fetched Data:", data); // Debugging
@@ -86,7 +86,7 @@ const OfficesList = () => {
                     <div className="flex items-center justify-center h-56 overflow-hidden">
                       <img
                         alt={office.name}
-                        src={`${apiUrl}/uploads/Offices/${office.logo}`}
+                        src={`${apiUrl}uploads/Offices/${office.logo}`}
                         className="w-full h-full object-fill rounded-t-lg"
                       />
                     </div>

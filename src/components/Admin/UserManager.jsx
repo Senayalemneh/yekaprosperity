@@ -31,10 +31,11 @@ import {
 import axios from "axios";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import { getApiUrl } from "../../utils/getApiUrl";
 
 const { Option } = Select;
 
-const BACKEND_URL = "https://yekawebapi.yekasubcity.com/";
+const BACKEND_URL = getApiUrl();
 
 const roleOptions = [
   { value: "admin", label: "Admin" },

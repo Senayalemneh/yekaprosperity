@@ -22,9 +22,9 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
+import { getApiUrl } from "../../utils/getApiUrl";
 
-const BACKEND_URL =
-  process.env.REACT_APP_BACKEND_URL || "https://yekawebapi.yekasubcity.com";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || getApiUrl();
 
 const AboutPage = () => {
   const { t, i18n } = useTranslation();
@@ -43,7 +43,7 @@ const AboutPage = () => {
 
     const fetchOfficeData = async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/officedata`);
+        const res = await axios.get(`${BACKEND_URL}api/officedata`);
         if (res.data.success && res.data.data && res.data.data.length > 0) {
           setOfficeData(res.data.data[0]);
         } else {
@@ -176,7 +176,7 @@ const AboutPage = () => {
               >
                 {officeData?.officelogo ? (
                   <img
-                    src={`${BACKEND_URL}/uploads/${officeData.officelogo}`}
+                    src={`${BACKEND_URL}uploads/${officeData.officelogo}`}
                     alt={getLocalizedText("officename")}
                     className="w-full h-auto max-h-80 object-contain rounded-lg"
                     onError={(e) => {

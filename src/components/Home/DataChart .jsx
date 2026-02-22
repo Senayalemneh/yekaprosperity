@@ -24,7 +24,7 @@ const DataTable = () => {
     // Fetch data from backend
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/data`);
+        const response = await axios.get(`${apiUrl}api/data`);
         const allData = response.data;
 
         setData({

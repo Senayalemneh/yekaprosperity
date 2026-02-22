@@ -42,6 +42,7 @@ import { MdOutlineImageNotSupported } from "react-icons/md";
 import axios from "axios";
 import { debounce } from "lodash";
 import { useTranslation } from "react-i18next";
+import { getApiUrl } from "../../utils/getApiUrl";
 
 const { Title, Text } = Typography;
 const { TabPane } = Tabs;
@@ -49,7 +50,7 @@ const { TextArea } = Input;
 const { Panel } = Collapse;
 
 const BACKEND_URL =
-  process.env.REACT_APP_BACKEND_URL || "https://yekawebapi.yekasubcity.com";
+  process.env.REACT_APP_BACKEND_URL || getApiUrl();
 
 const OfficeAdmin = () => {
   const { t } = useTranslation();
@@ -87,7 +88,7 @@ const OfficeAdmin = () => {
   const fetchOffices = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${BACKEND_URL}/api/officedata`);
+      const res = await axios.get(`${BACKEND_URL}api/officedata`);
       setOffices(res.data.data || []);
       setFilteredOffices(res.data.data || []);
     } catch (err) {
@@ -142,7 +143,7 @@ const OfficeAdmin = () => {
 
     setUploading(true);
     try {
-      const res = await axios.post(`${BACKEND_URL}/upload`, formData, {
+      const res = await axios.post(`${BACKEND_URL}upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       form.setFieldsValue({ officelogo: res.data.path });
@@ -200,12 +201,12 @@ const OfficeAdmin = () => {
 
       if (editingOffice) {
         await axios.put(
-          `${BACKEND_URL}/api/officedata/${editingOffice.id}`,
+          `${BACKEND_URL}api/officedata/${editingOffice.id}`,
           payload
         );
         message.success(t("officedata.updateSuccess"));
       } else {
-        await axios.post(`${BACKEND_URL}/api/officedata`, payload);
+        await axios.post(`${BACKEND_URL}api/officedata`, payload);
         message.success(t("officedata.createSuccess"));
       }
 
@@ -244,7 +245,7 @@ const OfficeAdmin = () => {
   const handleDelete = async (id) => {
     setActionLoading(true);
     try {
-      await axios.delete(`${BACKEND_URL}/api/officedata/${id}`);
+      await axios.delete(`${BACKEND_URL}api/officedata/${id}`);
       message.success(t("officedata.deleteSuccess"));
       fetchOffices();
     } catch (err) {
@@ -343,7 +344,7 @@ const OfficeAdmin = () => {
           {text ? (
             <Avatar
               shape="square"
-              src={`${BACKEND_URL}/uploads/${text}`}
+              src={`${BACKEND_URL}uploads/${text}`}
               size={64}
               className="rounded-lg shadow-sm border border-gray-200"
             />
@@ -368,7 +369,7 @@ const OfficeAdmin = () => {
             {record.officelogo ? (
               <Avatar
                 shape="square"
-                src={`${BACKEND_URL}/uploads/${record.officelogo}`}
+                src={`${BACKEND_URL}uploads/${record.officelogo}`}
                 size={48}
                 className="rounded-lg border border-gray-200"
               />
@@ -775,7 +776,7 @@ const OfficeAdmin = () => {
                         {previewImage && (
                           <div className="mt-4 flex flex-col items-center p-4 bg-gray-50 rounded-lg">
                             <img
-                              src={`${BACKEND_URL}/uploads/${previewImage}`}
+                              src={`${BACKEND_URL}uploads/${previewImage}`}
                               alt="preview"
                               className="max-h-48 rounded-lg border-2 border-gray-200 p-1"
                             />

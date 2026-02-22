@@ -41,6 +41,7 @@ import {
 } from "framer-motion";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import { getApiUrl } from "../../utils/getApiUrl";
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
@@ -155,6 +156,7 @@ const FloatingQuestion = styled(motion.div)`
 `;
 
 const FaqClient = () => {
+  const ApiUrl = getApiUrl();
   const { t, i18n } = useTranslation();
   const [faqs, setFaqs] = useState([]);
   const [filteredFaqs, setFilteredFaqs] = useState([]);
@@ -183,9 +185,7 @@ const FaqClient = () => {
     const fetchFaqs = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          "https://yekawebapi.yekasubcity.com/api/faq"
-        );
+        const response = await axios.get(`${ApiUrl}api/faq`);
         if (response.data.success) {
           const faqData = response.data.data;
           setFaqs(faqData);
@@ -200,7 +200,7 @@ const FaqClient = () => {
                   return category[currentLanguage] || category.en || "general";
                 }
                 return category || "general";
-              })
+              }),
             ),
           ];
           setCategories(["all", ...uniqueCategories]);
@@ -601,15 +601,15 @@ const FaqClient = () => {
                                   lang === "en"
                                     ? "English"
                                     : lang === "am"
-                                    ? "Amharic"
-                                    : "Oromo"
+                                      ? "Amharic"
+                                      : "Oromo"
                                 }
                               >
                                 <Avatar
                                   size="small"
                                   style={{
                                     backgroundColor: getLocalizedData(
-                                      faq.question
+                                      faq.question,
                                     )[lang]
                                       ? colors.primary
                                       : "#f0f0f0",

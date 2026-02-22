@@ -22,7 +22,7 @@ const OfficeManager = () => {
     try {
       const token = localStorage.getItem("token");
       const headers = { Authorization: `Bearer ${token}` };
-      const response = await axios.get(`${apiUrl}/api/offices`, { headers });
+      const response = await axios.get(`${apiUrl}api/offices`, { headers });
       setOffices(response.data);
     } catch (error) {
       console.error(t("officeManagertwo.fetchError"), error);
@@ -35,11 +35,11 @@ const OfficeManager = () => {
       const headers = { Authorization: `Bearer ${token}` };
 
       if (editId) {
-        await axios.patch(`${apiUrl}/api/offices/${editId}`, values, { headers });
+        await axios.patch(`${apiUrl}api/offices/${editId}`, values, { headers });
         message.success(t("officeManagertwo.updateSuccess"));
         setEditId(null);
       } else {
-        await axios.post(`${apiUrl}/api/offices`, values, { headers });
+        await axios.post(`${apiUrl}api/offices`, values, { headers });
         message.success(t("officeManagertwo.addSuccess"));
       }
       form.resetFields();
@@ -70,7 +70,7 @@ const OfficeManager = () => {
       const token = localStorage.getItem("token");
       const headers = { Authorization: `Bearer ${token}` };
 
-      await axios.patch(`${apiUrl}/api/offices/${currentOffice._id}`, values, {
+      await axios.patch(`${apiUrl}api/offices/${currentOffice._id}`, values, {
         headers,
       });
       message.success(t("officeManagertwo.updateSuccess"));
@@ -86,7 +86,7 @@ const OfficeManager = () => {
     try {
       const token = localStorage.getItem("token");
       const headers = { Authorization: `Bearer ${token}` };
-      await axios.delete(`${apiUrl}/api/offices/${id}`, { headers });
+      await axios.delete(`${apiUrl}api/offices/${id}`, { headers });
       message.success(t("officeManagertwo.deleteSuccess"));
       fetchOffices();
     } catch (error) {

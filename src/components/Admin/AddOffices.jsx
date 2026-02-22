@@ -27,7 +27,7 @@ const OfficeManager = () => {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await axios.get(`${apiUrl}/api/addoffice`, { headers });
+      const response = await axios.get(`${apiUrl}api/addoffice`, { headers });
       setOffices(response.data);
     } catch (error) {
       console.error(t('officeManager.fetchError'), error);
@@ -60,11 +60,11 @@ const OfficeManager = () => {
       };
 
       if (editId) {
-        await axios.put(`${apiUrl}/api/addoffice/${editId}`, formData, { headers });
+        await axios.put(`${apiUrl}api/addoffice/${editId}`, formData, { headers });
         message.success(t('officeManager.updateSuccess'));
         setEditId(null);
       } else {
-        await axios.post(`${apiUrl}/api/addoffice`, formData, { headers });
+        await axios.post(`${apiUrl}api/addoffice`, formData, { headers });
         message.success(t('officeManager.addSuccess'));
       }
       form.resetFields();
@@ -99,7 +99,7 @@ const OfficeManager = () => {
         Authorization: `Bearer ${token}`,
       };
 
-      await axios.put(`${apiUrl}/api/addoffice/${currentOffice._id}`, formData, { headers });
+      await axios.put(`${apiUrl}api/addoffice/${currentOffice._id}`, formData, { headers });
 
       message.success(t('officeManager.updateSuccess'));
       setIsModalVisible(false);
@@ -131,7 +131,7 @@ const OfficeManager = () => {
         Authorization: `Bearer ${token}`,
       };
 
-      await axios.delete(`${apiUrl}/api/addoffice/${id}`, { headers });
+      await axios.delete(`${apiUrl}api/addoffice/${id}`, { headers });
 
       message.success(t('officeManager.deleteSuccess'));
       fetchOffices();

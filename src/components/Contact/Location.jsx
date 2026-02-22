@@ -18,8 +18,9 @@ import {
 import axios from "axios";
 import { Spin } from "antd";
 import { motion, AnimatePresence } from "framer-motion";
+import { getApiUrl } from "../../utils/getApiUrl";
 
-const BACKEND_URL = "https://yekawebapi.yekasubcity.com/";
+const BACKEND_URL = getApiUrl();
 
 function Location() {
   const { t } = useTranslation();

@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { Form, Input, Button, Select, message, Card } from "antd";
 // import { UserAddOutlined } from 'react-icons/ai';
 import axios from "axios";
+import { getApiUrl } from "../../utils/getApiUrl";
 
 const { Option } = Select;
 
 const UserRegisterForm = () => {
   const [loading, setLoading] = useState(false);
+  const API_URL = getApiUrl() + "api/users"; // Adjust if your endpoint is different
 
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      await axios.post("https://yekawebapi.yekasubcity.com/api/users", values); // change port if needed
+      await axios.post(API_URL, values);
       message.success("User registered successfully!");
     } catch (error) {
       message.error(

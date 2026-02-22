@@ -41,7 +41,7 @@ const OfficeManager = () => {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await axios.get(`${apiUrl}/api/addworeda`, { headers });
+      const response = await axios.get(`${apiUrl}api/addworeda`, { headers });
       setOffices(response.data);
     } catch (error) {
       console.error(t("officeManagerworeda.fetchError"), error);
@@ -75,13 +75,13 @@ const OfficeManager = () => {
       };
 
       if (editId) {
-        await axios.put(`${apiUrl}/api/addworeda/${editId}`, formData, {
+        await axios.put(`${apiUrl}api/addworeda/${editId}`, formData, {
           headers,
         });
         message.success(t("officeManagerworeda.updateSuccess"));
         setEditId(null);
       } else {
-        await axios.post(`${apiUrl}/api/addworeda`, formData, { headers });
+        await axios.post(`${apiUrl}api/addworeda`, formData, { headers });
         message.success(t("officeManagerworeda.addSuccess"));
       }
       form.resetFields();
@@ -122,7 +122,7 @@ const OfficeManager = () => {
       };
 
       await axios.put(
-        `${apiUrl}/api/addworeda/${currentOffice._id}`,
+        `${apiUrl}api/addworeda/${currentOffice._id}`,
         formData,
         { headers }
       );
@@ -158,7 +158,7 @@ const OfficeManager = () => {
         Authorization: `Bearer ${token}`,
       };
 
-      await axios.delete(`${apiUrl}/api/addworeda/${id}`, { headers });
+      await axios.delete(`${apiUrl}api/addworeda/${id}`, { headers });
 
       message.success(t("officeManagerworeda.deleteSuccess"));
       fetchOffices();
@@ -208,7 +208,7 @@ const OfficeManager = () => {
           </p>
           {record.logo && (
             <Image
-              src={`${apiUrl}/uploads/Woredas/${record.logo}`}
+              src={`${apiUrl}uploads/Woredas/${record.logo}`}
               alt="Logo"
               style={{ width: "100%", maxHeight: "400px" }}
             />
@@ -253,7 +253,7 @@ const OfficeManager = () => {
         logo ? (
           <Image
             width={100}
-            src={`${apiUrl}/uploads/Woredas/${logo}`}
+            src={`${apiUrl}uploads/Woredas/${logo}`}
             alt="Office Logo"
           />
         ) : (

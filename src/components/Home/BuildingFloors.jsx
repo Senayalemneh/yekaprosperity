@@ -20,7 +20,7 @@ const BuildingFloors = () => {
   const fetchFloors = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${apiUrl}/api/offices`);
+      const response = await axios.get(`${apiUrl}api/offices`);
       const floorsData = response.data.reduce((acc, floorData) => {
         const floor = floorData.floor;
         const offices = floorData.offices[0].split(',').map(office => office.trim());

@@ -20,7 +20,7 @@ const WoredaDetail = () => {
 
     const fetchWoredaDetail = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/addworeda/${id}`);
+        const response = await axios.get(`${apiUrl}api/addworeda/${id}`);
         setDetail(response.data);
       } catch (error) {
         console.error("Error fetching woreda details:", error);

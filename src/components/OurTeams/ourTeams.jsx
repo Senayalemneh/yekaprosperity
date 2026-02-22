@@ -483,7 +483,7 @@ const CabinetList = () => {
                                     src={`${apiUrl}uploads/${cabinet.image}`}
                                     className="w-full h-full object-fill transition-transform duration-500 group-hover:scale-110"
                                     onError={(e) => {
-                                      e.target.src = "/api/placeholder/300/300";
+                                      e.target.src = "api/placeholder/300/300";
                                     }}
                                   />
                                 </button>
@@ -667,7 +667,7 @@ const CabinetList = () => {
                           alt={getTranslatedField(selectedCabinet.fullName)}
                           className="w-full h-full object-fill"
                           onError={(e) => {
-                            e.target.src = "/api/placeholder/400/400";
+                            e.target.src = "api/placeholder/400/400";
                           }}
                         />
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
