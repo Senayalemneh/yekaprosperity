@@ -492,6 +492,7 @@
     "fetchFailed": "Failed to fetch items"
   },
   "nav": {
+    "election": "Election",
     "orgStructure": "Org Structure",
     "home": "Home",
     "about": "About",

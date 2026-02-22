@@ -35,6 +35,7 @@ import WelcomePage from "../components/Admin/NavbarA";
 import UserRegistration from "../components/Admin/UserRegistrationForm";
 import Login from "../components/Admin/LoginPage";
 import ProtectedRoute from "../components/Admin/ProtectedRoute";
+import Election from "../components/Election/election";
 
 const routes = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const routes = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "about", element: <About /> },
+      { path: "election", element: <Election /> },
       { path: "news", element: <News /> },
       { path: "news/:id", element: <NewsDetail /> },
       { path: "gallery", element: <Gallery /> },

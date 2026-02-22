@@ -44,6 +44,7 @@ function Navbar() {
   const navItems = [
     { path: "/", label: "nav.home", icon: "🏠" },
     { path: "/about", label: "nav.about", icon: "ℹ️" },
+     { path: "/election", label: "nav.election", icon: "ℹ️" },
     { path: "/news", label: "nav.news", icon: "📰" },
     { path: "/gallery", label: "nav.gallery", icon: "🖼️" },
     { path: "/topperformers", label: "nav.top_performers", icon: "🏆" },
