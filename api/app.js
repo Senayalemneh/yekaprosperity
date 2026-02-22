@@ -27,6 +27,7 @@ const compliantRoutes = require("./routes/complaintRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const orgRoutes = require("./routes/orgRoutes");
 const faqRoutes = require("./routes/faqRoutes");
+const candidateRoutes = require('./routes/candidateRoutes');
 
 //DMS
 const folderRoutes = require("./routes/folderRoutes");
@@ -71,6 +72,8 @@ app.use("/api/complaints", compliantRoutes);
 app.use("/api/partners", partnerRoutes);
 app.use("/api/org-structures", orgRoutes);
 app.use("/api/faq", faqRoutes);
+app.use('/api/candidates', candidateRoutes);
+
 // DMS routes
 
 app.use("/api/dms/folders", folderRoutes);

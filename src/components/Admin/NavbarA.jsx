@@ -52,6 +52,7 @@ import AddDocument from "./addDocument";
 import AddOfficeData from "./addOfficeData";
 import AddCarouselImg from "./AddCarouselImages";
 import AddPartners from "./AddPartners";
+import AddCandidates from "./AddCandidates";
 
 import AddFAQ from "./AddFAQ";
 
@@ -181,6 +182,12 @@ const NavbarA = () => {
             roles: ["admin", "communication"],
           },
           {
+            page: "addcandidates",
+            icon: <FaUser />,
+            text: t("adminnavigation.addCandidates"),
+            roles: ["admin", "communication"],
+          },
+          {
             page: "addnews",
             icon: <FaNewspaper />,
             text: t("adminnavigation.addNews"),
@@ -300,7 +307,7 @@ const NavbarA = () => {
 
     return linkCategories.map((category, catIndex) => {
       const visibleLinks = category.links.filter((link) =>
-        link.roles.includes(role)
+        link.roles.includes(role),
       );
 
       if (visibleLinks.length === 0) return null;
@@ -675,6 +682,7 @@ const NavbarA = () => {
               {currentPage === "addorgstructure" && <addOrgStruct />}
               {currentPage === "addFAQ" && <AddFAQ />}
               {currentPage === "dms" && <DMS />}
+              {currentPage === "addcandidates" && <AddCandidates />}
             </div>
           </motion.div>
         </div>
